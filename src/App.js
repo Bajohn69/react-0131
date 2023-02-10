@@ -108,9 +108,68 @@ function App() {
         刪除id為99的物件
       </button>
       <br />
-      <button onClick={() => {}}>在id為2後面插入id為5與文字為bbb的物件</button>
+      <button
+        onClick={() => {
+          // 我自己ㄉ
+          // const newObj = { id: 5, text: 'bbb' }
+          // const newData = [...data]
+          // const newDataAfter = newData.slice(2)
+          // const newDataBefore = newData.slice(0, 2)
+          // const newDataBefore5 = [...newDataBefore, newObj]
+          // const AllData = [...newDataBefore5, ...newDataAfter]
+
+          // setData(AllData)
+          // console.log(AllData)
+
+          // 建立要插入的物件
+          const newObj = { id: 5, text: 'bbb' }
+          // 尋找 id = 2 的索引值
+          const index = data.findIndex((v, i) => {
+            return v.id === 2
+          })
+          // 如果有找到
+          if (index > -1) {
+            // 分割為兩子陣列
+            const aArray = data.slice(0, index + 1)
+            const bArray = data.slice(index + 1)
+
+            // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)
+            // 2. 在新的變數值(陣列/物件)上作處理
+            const newData = [...aArray, newObj, ...bArray]
+
+            // 3. 設定回原本的狀態中
+            setData(newData)
+          }
+        }}
+      >
+        在id為2後面插入id為5與文字為bbb的物件
+      </button>
       <br />
-      <button onClick={() => {}}>取代id為3的文字為cccc</button>
+      <button
+        onClick={() => {
+          // 尋找有沒有 id=3 的資料
+          const index = data.findIndex((v, i) => {
+            return v.id === 3
+          })
+          // id=3 的資料 存在
+          if (index > -1) {
+            // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)
+            // 第一種深拷貝(只有在陣列只有一層的時候用)
+            const newData = data.map((v) => {
+              return { ...v }
+            })
+            // 另一種深拷貝(效率很好 Google 有做最佳化)
+            // const newData = JSON.parse(JSON.stringify(data))
+
+            // 2. 在新的變數值(陣列/物件)上作處理
+            newData[index].text = 'cccc'
+            // 3. 設定回原本的狀態中
+            setData(newData)
+          }
+        }}
+      >
+        取代id為3的文字為cccc
+      </button>
       <br />
       <button onClick={() => {}}>
         陣列最前面新增一個物件值id不重覆與文字為xxx的物件
