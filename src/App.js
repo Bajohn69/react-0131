@@ -171,11 +171,41 @@ function App() {
         取代id為3的文字為cccc
       </button>
       <br />
-      <button onClick={() => {}}>
+      <button
+        onClick={() => {
+          // 我的(錯ㄉ)
+          // const index = data.length + 1
+          // const newObj = { id: index, text: 'xxx' }
+          // const newData = [newObj, ...data]
+          // setData(newData)
+
+          // 一個只有 id 的陣列
+          const ids = data.map((v) => v.id)
+          // 利用這個陣列找出最大值 + 1
+          const newId = Math.max(...ids) + 1
+
+          const newObj = { id: newId, text: 'xxx' }
+
+          const newData = [newObj, ...data]
+          setData(newData)
+        }}
+      >
         陣列最前面新增一個物件值id不重覆與文字為xxx的物件
       </button>
       <br />
-      <button onClick={() => {}}>
+      <button
+        onClick={() => {
+          // 一個只有 id 的陣列
+          const ids = data.map((v) => v.id)
+          // 利用這個陣列找出最大值 + 1
+          const newId = Math.max(...ids) + 1
+
+          const newObj = { id: newId, text: 'xxx' }
+
+          const newData = [...data, newObj]
+          setData(newData)
+        }}
+      >
         陣列最後面新增一個物件值id不重覆與文字為yyy的物件
       </button>
     </>
