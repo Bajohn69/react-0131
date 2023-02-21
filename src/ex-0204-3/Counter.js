@@ -12,9 +12,10 @@ const Counter = () => {
         onClick={() => {
           console.log('before', total)
 
-          const newTotal = total + 1
-          setTotal(newTotal)
-          console.log(newTotal)
+          const newTotal = total + 1 // 先運算出變動後結果值
+          setTotal(newTotal) // 此處呼叫要變動狀態的方法
+          console.log(newTotal) // 此處想要得到變動後的狀態
+
           //setTotal(total + 1) // 但實際執行是在 after 以後(setState 異步執行)
           // setState 異步執行
           // 對應策略
