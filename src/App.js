@@ -1,8 +1,11 @@
-import React from 'react'
-import Parent from './ex-0216-7/Parent'
+import OrderPage from './ex-0326-8/OrderPage'
 
 const App = (props) => {
-  return <Parent />
+  return (
+    <>
+      <OrderPage />
+    </>
+  )
 }
 
 export default App
