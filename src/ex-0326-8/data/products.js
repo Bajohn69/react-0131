@@ -6,13 +6,13 @@ export const products = [
     image: 'https://i.imgur.com/1GrakTl.jpg',
     price: 300,
   },
-  // {
-  //   id: 2,
-  //   name: '咖啡色 T-shirt',
-  //   category: 'Shirt',
-  //   image: 'https://i.imgur.com/1GrakTl.jpg',
-  //   price: 400,
-  // },
+  {
+    id: 2,
+    name: '咖啡色 T-shirt',
+    category: 'Shirt',
+    image: 'https://i.imgur.com/1GrakTl.jpg',
+    price: 400,
+  },
   // {
   //   id: 3,
   //   name: '咖啡色 T-shirt',

@@ -3,7 +3,7 @@ import ProductItem from './ProductItem'
 import { products } from '../../data/products'
 
 const OrderList = (props) => {
-  const { count, setCount } = props
+  const { counts, setCounts } = props
   return (
     <>
       <div className="col-md-8 cart">
@@ -20,12 +20,33 @@ const OrderList = (props) => {
           </div>
         </div>
         {products.map((v, i) => {
-          // 這樣相當於下面註解中的寫法
-          // 注意物件只有屬性名稱都相同才能用解構語法，key 值一定要加
-          // key 值選擇: 有 id 優先用 id
+          /* 
+          return (
+            <ProductItem key={v.id} {...v} />
+            {...v} 這樣相當於下面註解中的寫法
+            注意物件只有屬性名稱都相同才能用解構語法，key 值一定要加
+            key 值選擇: 有 id 優先用 id
+
+          ) */
 
           return (
-            <ProductItem key={v.id} count={count} setCount={setCount} {...v} />
+            <ProductItem
+              key={v.id}
+              count={counts[i]}
+              setCount={(newCount) => {
+                // 復合的資料類型(陣列)適用三步驟
+                // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)
+                const newCounts = [...counts]
+
+                // 2. 在新的變數值(陣列/物件)上作處理
+                // 限制最少買一件
+                newCounts[i] = newCount < 1 ? 1 : newCount
+
+                // 3. 設定回原本的狀態中
+                setCounts(newCounts)
+              }}
+              {...v}
+            />
           )
         })}
         {/* const { id, name, category, image, price } = v
