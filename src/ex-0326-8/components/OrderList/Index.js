@@ -44,6 +44,21 @@ const OrderList = (props) => {
 
                 // 3. 設定回原本的狀態中
                 setCounts(newCounts)
+
+                // -----------------------------------
+                // 也可以用 map 寫，和上面同功能
+                // const newCounts = counts.map((v2, i2) =>
+                //   i2 === i ? (newCount < 1 ? 1 : newCount) : v2
+                // )
+                // setCounts(newCounts)
+
+                // -----------------------------------
+                // 也可以寫一整句，非常難以閱讀的程式碼
+                // setCounts(
+                //   counts.map((v2, i2) =>
+                //     i2 === i ? (newCount < 1 ? 1 : newCount) : v2
+                //   )
+                // )
               }}
               {...v}
             />
