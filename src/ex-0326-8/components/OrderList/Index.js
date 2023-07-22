@@ -41,7 +41,7 @@ const OrderList = (props) => {
                 const newProductsInOrder = productsInOrder.filter((v2, i2) => {
                   return v.id !== v2.id
                 })
-                console.log(newProductsInOrder)
+
                 // 3. 設定回原本的狀態中
                 setProductsInOrder(newProductsInOrder)
               }}
