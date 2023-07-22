@@ -3,7 +3,8 @@ import ProductItem from './ProductItem'
 import { products } from '../../data/products'
 
 const OrderList = (props) => {
-  const { counts, setCounts } = props
+  const { productsInOrder, setProductsInOrder } = props
+
   return (
     <>
       <div className="col-md-8 cart">
@@ -19,7 +20,7 @@ const OrderList = (props) => {
             </div>
           </div>
         </div>
-        {products.map((v, i) => {
+        {productsInOrder.map((v, i) => {
           /* 
           return (
             <ProductItem key={v.id} {...v} />
@@ -32,18 +33,45 @@ const OrderList = (props) => {
           return (
             <ProductItem
               key={v.id}
-              count={counts[i]}
+              {...v}
+              //count={v.count} //因為v裡面已有count屬性
+              removeItem={() => {
+                // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)
+                // 2. 在新的變數值(陣列/物件)上作處理
+                const newProductsInOrder = productsInOrder.filter((v2, i2) => {
+                  return v.id !== v2.id
+                })
+                console.log(newProductsInOrder)
+                // 3. 設定回原本的狀態中
+                setProductsInOrder(newProductsInOrder)
+              }}
               setCount={(newCount) => {
                 // 復合的資料類型(陣列)適用三步驟
                 // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)
-                const newCounts = [...counts]
-
                 // 2. 在新的變數值(陣列/物件)上作處理
                 // 限制最少買一件
-                newCounts[i] = newCount < 1 ? 1 : newCount
+                // const newProductsInOrder = productsInOrder.map((v2, i2) => {
+                //   if (i2 === i) {
+                //     return { ...v2, count: newCount < 1 ? 1 : newCount }
+                //   }
+
+                //   return v2
+                // })
 
                 // 3. 設定回原本的狀態中
-                setCounts(newCounts)
+                // setProductsInOrder(newProductsInOrder)
+
+                //============================== 方法 2 (分三個步驟較容易理解)
+                // 1. 從目前的狀態拷貝出一個新的變數值(陣列/物件)，深拷貝多一層
+                const newProductsInOrder = productsInOrder.map((v2) => {
+                  return { ...v2 }
+                })
+
+                // 2. 在新的變數值(陣列/物件)上作處理
+                newProductsInOrder[i].count = newCount < 1 ? 1 : newCount
+
+                // 3. 設定回原本的狀態中
+                setProductsInOrder(newProductsInOrder)
 
                 // -----------------------------------
                 // 也可以用 map 寫，和上面同功能
@@ -60,7 +88,6 @@ const OrderList = (props) => {
                 //   )
                 // )
               }}
-              {...v}
             />
           )
         })}
