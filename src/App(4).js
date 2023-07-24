@@ -1,9 +1,9 @@
-import Controlled from './ex-form/Controlled'
+import OrderPage from './ex-0326-8/OrderPage'
 
 const App = (props) => {
   return (
     <>
-      <Controlled />
+      <OrderPage />
     </>
   )
 }

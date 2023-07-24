@@ -12,7 +12,9 @@ const ProductItem = (props) => {
   // }
 
   // 解構
-  const { id, name, category, image, price, count, setCount } = props
+  const { id, name, category, image, price, count, setCount, removeItem } =
+    props
+
   return (
     <>
       <div className="row border-top border-bottom">
@@ -47,7 +49,9 @@ const ProductItem = (props) => {
           </div>
           <div className="col">
             ${price}
-            <span className="close">&#10005;</span>
+            <span className="close" onClick={removeItem}>
+              &#10005;
+            </span>
           </div>
         </div>
       </div>
