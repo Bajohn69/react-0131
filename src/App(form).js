@@ -1,9 +1,9 @@
-import BirthSelect from './ex-birth-select/BirthSelect'
+import Controlled from './ex-form-2/Controlled'
 
 const App = (props) => {
   return (
     <>
-      <BirthSelect />
+      <Controlled />
     </>
   )
 }
