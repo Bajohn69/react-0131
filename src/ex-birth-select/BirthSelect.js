@@ -24,11 +24,6 @@ const BirthSelect = () => {
   const createD = () => {
     const date = []
 
-    // 限制要先有年月才有日
-    if (myMonth === '' || myYear === '') {
-      return []
-    }
-
     // 幫你算日期數量
     // const days = new Date(2022, 7, 0).getDate() // 31
     const days = new Date(Number(myYear), Number(myMonth), 0).getDate()
@@ -38,7 +33,7 @@ const BirthSelect = () => {
     }
     return date
   }
-  // TODO: 2022-07-15 09-03-12 一開始
+
   return (
     <>
       <label>西元</label>
@@ -71,8 +66,8 @@ const BirthSelect = () => {
         }}
       >
         <option value="">請選擇</option>
-
-        {createD()}
+        {/* 限制要先有年月才有日 */}
+        {myMonth === '' || myYear === '' ? '' : createD()}
       </select>
       <label>日</label>
     </>
